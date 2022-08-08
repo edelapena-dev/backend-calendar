@@ -22,9 +22,13 @@ app.use( express.json() );
 //TODO auth/ crear login renew
 app.use( '/api/auth', require('./routes/auth') );
 
-
 //TODO CRUD Eventos
 app.use( '/api/events', require('./routes/events') );
+
+//TODO Esto es en caso de que no existe la peticion
+app.get('*', ( req, res) => {
+    res.sendFile( __dirname + '/public/index.html');
+});
 
 //*Escuchar peticiones
 app.listen( process.env.PORT , () => {
